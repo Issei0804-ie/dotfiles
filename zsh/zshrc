@@ -1,0 +1,38 @@
+source ~/.zplug/init.zsh
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
+zplug "mafredri/zsh-async"
+zplug "sindresorhus/pure"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "chrissicool/zsh-256color"
+zplug "mrowa44/emojify", as:command
+
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  fi
+fi
+
+HISTFILE=$HOME/.zsh_history
+
+HISTSIZE=1000
+
+SAVEHIST=10000
+
+zplug load
+
+export ZPLUG_HOME=~/.zplug
+
+function notify-github-actions-ci-finish() {
+  gh run watch -i10 && osascript -e 'display dialog "Finished!!"'
+}
+
+alias nci=notify-github-actions-ci-finish
+
+
+source ./peco
+source ./alias

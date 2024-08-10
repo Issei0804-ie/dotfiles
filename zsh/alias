@@ -1,0 +1,5 @@
+alias nci=notify-github-actions-ci-finish
+alias cdd='cd ~/Desktop'
+alias s='git status'
+alias vim='nvim'
+alias dock='docker compose'
